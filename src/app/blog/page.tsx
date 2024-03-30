@@ -2,6 +2,7 @@ import { posts } from "#site/content";
 import { PostItem } from "@/components/post-item";
 import { QueryPagination } from "@/components/query-pagination";
 import { formattedDate, sortPost } from "@/lib/utils";
+import { Metadata } from "next";
 
 const POST_PER_PAGE = 6;
 interface BlogPageProps {
@@ -9,6 +10,10 @@ interface BlogPageProps {
     page?: string;
   };
 }
+export const metadata: Metadata = {
+  title: "My Blog",
+  description: "My Blog",
+};
 export default async function Blog({ searchParams }: BlogPageProps) {
   const currentPage = Number(searchParams?.page) || 1;
   const sortedPost = sortPost(posts.filter((post) => post.published));

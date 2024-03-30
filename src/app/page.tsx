@@ -1,15 +1,43 @@
+"use client";
 import { posts } from "#site/content";
 import { BentoGrid, BentoGridItem } from "@/components/ui/bento-grid";
 import { buttonVariants } from "@/components/ui/button";
 import { siteConfig } from "@/config/site";
 import { cn, sortPost } from "@/lib/utils";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 const Skeleton = () => (
   <div className="dark:bg-dot-white/[0.2] bg-dot-black/[0.2] flex h-full min-h-[6rem] w-full   flex-1 rounded-xl border  border-transparent bg-neutral-100 [mask-image:radial-gradient(ellipse_at_center,white,transparent)] dark:border-white/[0.2] dark:bg-black"></div>
 );
 
 export default function Home() {
+  const [ssrImage, setSsrImage] = useState<string | null>(null);
+
+  useEffect(() => {
+    // Memuat gambar SSR dari server
+    const fetchSsrImage = async () => {
+      try {
+        const response = await fetch("/api/og/route?title=YourTitle");
+        if (response.ok) {
+          const blob = await response.blob();
+          setSsrImage(URL.createObjectURL(blob)); // Tetapkan ssrImage dengan URL gambar
+        } else {
+          console.error("Failed to fetch SSR image:", response.status);
+        }
+      } catch (error) {
+        console.error("Failed to fetch SSR image:", error);
+      }
+    };
+    fetchSsrImage();
+
+    // Membersihkan gambar SSR yang tidak digunakan lagi saat komponen unmount
+    return () => {
+      if (ssrImage) {
+        URL.revokeObjectURL(ssrImage);
+      }
+    };
+  }, []);
   const latestPost = sortPost(posts).slice(0, 4);
   return (
     <>
@@ -26,7 +54,7 @@ export default function Home() {
               href="/blog"
               className={cn(
                 buttonVariants({ size: "lg" }),
-                "w-full bg-primary transition-colors hover:bg-primary-foreground hover:text-primary sm:w-fit",
+                "w-full transition-colors hover:bg-primary-foreground hover:text-primary dark:bg-primary-foreground dark:text-primary dark:hover:bg-primary dark:hover:text-primary-foreground sm:w-fit",
               )}
             >
               Visit my blog
@@ -45,15 +73,25 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="container flex max-w-4xl flex-col space-y-6 bg-red-500 py-6 lg:py-10">
+      <section className="container flex max-w-4xl flex-col space-y-6 py-6 lg:py-10">
         <BentoGrid className="mx-auto max-w-4xl md:auto-rows-[20rem]">
           {latestPost.map((post, index) => (
             <BentoGridItem
               slug={post.slug}
-              header={<Skeleton />}
+              header={
+                ssrImage ? (
+                  <img
+                    src={ssrImage}
+                    alt="SSR Image"
+                    className="h-full w-full rounded-xl object-cover"
+                  />
+                ) : (
+                  <Skeleton /> // Gunakan Skeleton jika ssrImage belum tersedia
+                )
+              }
               key={index}
               title={post.title}
-              date={post.date} // Menambahkan properti date untuk menampilkan tanggal
+              date={post.date}
               description={post.description}
               className={`group/bento flex flex-col justify-between space-y-4 rounded-xl border border-transparent bg-white p-4 shadow-input transition duration-200 hover:border-primary-foreground hover:shadow-xl dark:border-white/[0.2] dark:bg-black dark:shadow-none ${
                 (index === 0 && "md:col-span-2") ||
@@ -65,8 +103,6 @@ export default function Home() {
           ))}
         </BentoGrid>
       </section>
-
-      {/* Use BentoGrid for styling */}
     </>
   );
 }
