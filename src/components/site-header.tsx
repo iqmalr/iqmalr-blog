@@ -22,7 +22,7 @@ export default function SiteHeader() {
               <div
                 className={cn(
                   buttonVariants({ variant: "ghost" }),
-                  "hidden w-10 px-0 sm:inline-flex",
+                  "hidden w-10 px-0 transition-colors hover:text-primary sm:inline-flex",
                 )}
               >
                 <Icons.gitHub className="h-4 w-4" />
@@ -37,7 +37,7 @@ export default function SiteHeader() {
               <div
                 className={cn(
                   buttonVariants({ variant: "ghost" }),
-                  "hidden w-10 px-0 sm:inline-flex",
+                  "hidden w-10 px-0 transition-colors hover:text-primary sm:inline-flex",
                 )}
               >
                 <Icons.linkedIn className="h-4 w-4" />
