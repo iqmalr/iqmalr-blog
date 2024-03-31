@@ -32,6 +32,29 @@ export function MainNav() {
       >
         About
       </Link>
+
+      {/* <AnimatedLink href="/" className="mr-6 flex items-center space-x-2">
+        <Icons.logo className="h-6 w-6" />
+        <span className="font-bold ">{siteConfig.name}</span>
+      </AnimatedLink>
+      <AnimatedLink
+        href="/blog"
+        className={cn(
+          "hidden text-sm font-medium transition-colors hover:text-primary sm:inline-block",
+          pathName === "/blog" ? "text-foreground" : "text-foreground/60",
+        )}
+      >
+        Blog
+      </AnimatedLink>
+      <AnimatedLink
+        href="/about"
+        className={cn(
+          "hidden text-sm font-medium transition-colors hover:text-primary sm:inline-block",
+          pathName === "/about" ? "text-foreground" : "text-foreground/60",
+        )}
+      >
+        About
+      </AnimatedLink> */}
     </nav>
   );
 }

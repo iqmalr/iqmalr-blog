@@ -25,11 +25,11 @@ export default function SiteFooter() {
             <Icons.gitHub className="h-6 w-6 transition-colors hover:text-primary " />
           </a>
         </div>
-      </div>
-      <div className="mb-2 flex space-x-2 text-sm text-muted-foreground">
-        <a href={siteConfig.links.personalSite} target="_blank">
+        <div className="mb-2 flex space-x-2 text-sm text-muted-foreground">
+          <a href={siteConfig.links.personalSite} target="_blank">
             {siteConfig.author}
-        </a>
+          </a>
+        </div>
       </div>
     </footer>
   );

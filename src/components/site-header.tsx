@@ -41,24 +41,10 @@ export default function SiteHeader() {
                 )}
               >
                 <Icons.linkedIn className="h-4 w-4" />
-                <span className="sr-only ">Github</span>
+                <span className="sr-only ">LinkedIn</span>
               </div>
             </Link>
-            {/* <Link
-              href={siteConfig.links.linkedin}
-              target="_blank"
-              rel="noreferrer"
-            >
-              <div
-                className={cn(
-                  buttonVariants({ variant: "ghost" }),
-                  "hidden w-10 px-0 text-white transition-colors hover:text-primary sm:inline-flex",
-                )}
-              >
-                <Icons.linkedIn className="h-4 w-4" />
-                <span className="sr-only ">Linkedin</span>
-              </div>
-            </Link> */}
+
             <ModeToggle />
             <MobileNav />
           </nav>

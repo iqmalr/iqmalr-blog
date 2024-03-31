@@ -35,7 +35,7 @@ export const AnimatedTooltip = ({
     <>
       {items.map((item, idx) => (
         <div
-          className="group relative bg-pink-500"
+          className="group relative"
           key={item.name}
           onMouseEnter={() => setHoveredIndex(item.id)}
           onMouseLeave={() => setHoveredIndex(null)}
@@ -46,7 +46,6 @@ export const AnimatedTooltip = ({
               animate={{
                 y: 0,
                 opacity: 1,
-
                 scale: 1,
                 transition: {
                   type: "spring",
