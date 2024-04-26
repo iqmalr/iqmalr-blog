@@ -27,13 +27,25 @@
 
 [data-rehype-pretty-code-figure] [data-highlighted-chars] {
   @apply rounded bg-zinc-600/50;
-  box-shadow: 0 0 0 4px rgb(82 82 91 / 0.5);
+  box-shadow: 0 0 0 1px rgba(176, 176, 248, 0.5);
 }
 
 [data-rehype-pretty-code-figure] [data-chars-id] {
   @apply border-b-2 p-1 shadow-none;
 }
+[data-rehype-pretty-code-title] {
+  @apply z-0 mb-[-0.6rem] rounded-t-lg bg-black px-4 py-2 font-mono text-white;
+}
+[data-rehype-pretty-code-caption] {
+  @apply z-0 mt-[-0.6rem] rounded-b-lg bg-black px-4 py-2 font-mono text-white;
+}
 
 .subheading-anchor {
   @apply no-underline hover:underline;
+}
+.rehype-code-title {
+  @apply mb-2 bg-blue-500 text-lg font-semibold;
+}
+.figcaption {
+  @apply mt-2 text-sm text-gray-500;
 }

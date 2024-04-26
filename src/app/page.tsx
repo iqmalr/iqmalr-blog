@@ -2,6 +2,7 @@
 import { posts } from "#site/content";
 import { BentoGrid, BentoGridItem } from "@/components/ui/bento-grid";
 import { buttonVariants } from "@/components/ui/button";
+import { TracingBeam } from "@/components/ui/tracing-beam";
 import { siteConfig } from "@/config/site";
 import { cn, sortPost } from "@/lib/utils";
 import Link from "next/link";
@@ -40,8 +41,12 @@ export default function Home() {
   }, []);
   const latestPost = sortPost(posts).slice(0, 4);
   return (
-    <>
-      <section className=" h-dvh space-y-6 pb-8 pt-6 md:mt-10 md:pb-12 lg:*:py-32">
+    // <>
+    <TracingBeam>
+      <section
+        // style={{ scrollSnapType: "y", overflowY: "scroll" }}
+        className=" h-dvh space-y-6 pb-8 pt-6 md:mt-10 md:pb-12 lg:*:py-32"
+      >
         <div className="container flex flex-col gap-4 text-center ">
           <h1 className="text-balance text-3xl font-black sm:text-5xl md:text-6xl lg:text-7xl">
             Hi, I&apos;m Iqmalr
@@ -83,7 +88,7 @@ export default function Home() {
               title={post.title}
               date={post.date}
               description={post.description}
-              className={`group/bento border-zink flex flex-col justify-between space-y-4 rounded-xl border bg-white p-4 shadow-input transition duration-200 hover:border-primary-foreground hover:shadow-xl dark:border-white/[0.2] dark:bg-black dark:shadow-none ${
+              className={`group/bento flex flex-col justify-between space-y-4 rounded-xl border border-zink bg-white p-4 shadow-input transition duration-200 hover:border-primary-foreground hover:shadow-xl dark:border-white/[0.2] dark:bg-black dark:shadow-none ${
                 (index === 0 && "md:col-span-2") ||
                 (index === 1 && "md:col-span-1") ||
                 (index === 2 && "md:col-span-1") ||
@@ -93,7 +98,8 @@ export default function Home() {
           ))}
         </BentoGrid>
       </section>
-    </>
+    </TracingBeam>
+    // </>
   );
 }
 

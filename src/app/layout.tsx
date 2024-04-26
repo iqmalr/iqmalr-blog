@@ -38,7 +38,9 @@ export default function RootLayout({
         <Providers>
           <div className="relative flex min-h-dvh flex-col bg-background">
             <SiteHeader />
+            {/* <TracingBeam> */}
             <main className="flex-1">{children}</main>
+            {/* </TracingBeam> */}
             <SiteFooter />
           </div>
         </Providers>

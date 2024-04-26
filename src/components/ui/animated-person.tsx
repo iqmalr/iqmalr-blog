@@ -1,15 +1,9 @@
 "use client";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import Image from "next/image";
-import React, { useState } from "react";
-import {
-  motion,
-  useTransform,
-  AnimatePresence,
-  useMotionValue,
-  useSpring,
-} from "framer-motion";
+import { useState } from "react";
 
-export const AnimatedTooltip = ({
+export const AnimatedPerson = ({
   items,
 }: {
   items: {
@@ -41,17 +35,17 @@ export const AnimatedTooltip = ({
     <>
       {items.map((item, idx) => (
         <div
-          className="group  relative -mr-4"
+          className="group relative"
           key={item.name}
           onMouseEnter={() => setHoveredIndex(item.id)}
           onMouseLeave={() => setHoveredIndex(null)}
         >
           {hoveredIndex === item.id && (
             <motion.div
-              initial={{ opacity: 0, y: 20, scale: 0.6 }}
+              initial={{ opacity: 0, y: 20, scale: 2 }}
               animate={{
-                opacity: 1,
                 y: 0,
+                opacity: 1,
                 scale: 1,
                 transition: {
                   type: "spring",
@@ -61,18 +55,17 @@ export const AnimatedTooltip = ({
               }}
               exit={{ opacity: 0, y: 20, scale: 0.6 }}
               style={{
+                left: 30,
                 translateX: translateX,
                 rotate: rotate,
                 whiteSpace: "nowrap",
               }}
-              className="absolute -left-1/2 -top-16 z-50 flex translate-x-1/2  flex-col items-center justify-center rounded-md bg-black px-4 py-2 text-xs shadow-xl"
+              className=" absolute -left-1/2 -top-16 flex translate-x-1/2  flex-col items-center justify-center rounded-md bg-primary px-4 py-2 text-xs text-white shadow-xl dark:bg-primary-foreground dark:text-primary "
             >
-              <div className="absolute inset-x-10 -bottom-px z-30 h-px w-[20%] bg-gradient-to-r from-transparent via-emerald-500 to-transparent " />
-              <div className="absolute -bottom-px left-10 z-30 h-px w-[40%] bg-gradient-to-r from-transparent via-sky-500 to-transparent " />
-              <div className="relative z-30 text-base font-bold text-white">
-                {item.name}
-              </div>
-              <div className="text-xs text-white">{item.designation}</div>
+              <div className="absolute inset-x-10 -bottom-px h-px w-[20%] bg-gradient-to-r from-transparent via-emerald-500 to-transparent " />
+              <div className="absolute -bottom-px left-10 h-px w-[40%] bg-gradient-to-r from-transparent via-sky-500 to-transparent " />
+              <div className="relative text-base font-bold ">{item.name}</div>
+              <div className="text-xs ">{item.designation}</div>
             </motion.div>
           )}
           <Image
@@ -81,7 +74,8 @@ export const AnimatedTooltip = ({
             width={100}
             src={item.image}
             alt={item.name}
-            className="relative !m-0 h-14 w-14 rounded-full border-2 border-white object-cover object-top !p-0 transition  duration-500 group-hover:z-30 group-hover:scale-105"
+            loader={({ src }) => src}
+            className="relative !m-0 h-48 w-48 rounded-full border-2 border-white object-cover object-top !p-0 transition  duration-500  group-hover:scale-105"
           />
         </div>
       ))}

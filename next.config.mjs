@@ -1,14 +1,30 @@
+import nextMDX from "@next/mdx";
+import rehypePrettyCode from "rehype-pretty-code";
 import { build } from "velite";
+/** @type {import('rehype-pretty-code').Options} */
+const options = {
+  // See Options section below.
+};
+const withMDX = nextMDX({
+  extension: /\.mdx?$/,
+  options: {
+    remarkPlugins: [],
+    rehypePlugins: [[rehypePrettyCode, options]],
+  },
+});
 
-/** @type {import('next').NextConfig} */
-export default {
+export default withMDX({
   // othor next config here...
   webpack: (config) => {
     config.plugins.push(new VeliteWebpackPlugin());
     return config;
   },
-};
+  // Tambahkan properti konfigurasi Next.js lainnya di sini
+});
+// /** @type {import('next').NextConfig} */
+// const nextConfig = { reactStrictMode: true };
 
+// export default withMDX(nextConfig);
 class VeliteWebpackPlugin {
   static started = false;
   constructor(/** @type {import('velite').Options} */ options = {}) {

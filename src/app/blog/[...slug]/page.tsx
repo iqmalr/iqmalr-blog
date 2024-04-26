@@ -1,5 +1,6 @@
 import { posts } from "#site/content";
 import { MDXContent } from "@/components/mdx-component";
+import { TracingBeam } from "@/components/ui/tracing-beam";
 import { siteConfig } from "@/config/site";
 import "@/styles/mdx.css";
 import { Metadata } from "next";
@@ -66,13 +67,19 @@ export default async function PostPage({ params }: PostPageProps) {
     notFound();
   }
   return (
-    <article className="container prose mx-auto max-w-3xl py-6 dark:prose-invert">
-      <h1 className="mb-2">{post.title}</h1>
-      {post.description ? (
-        <p className="mt-0 text-xl text-muted-foreground">{post.description}</p>
-      ) : null}
-      <hr className="my-4" />
-      <MDXContent code={post.body} />
-    </article>
+    <>
+      <TracingBeam>
+        <article className="container prose mx-auto max-w-3xl py-6 dark:prose-invert">
+          <h1 className="mb-2">{post.title}</h1>
+          {post.description ? (
+            <p className="mt-0 text-xl text-muted-foreground">
+              {post.description}
+            </p>
+          ) : null}
+          <hr className="my-4" />
+          <MDXContent code={post.body} />
+        </article>
+      </TracingBeam>
+    </>
   );
 }

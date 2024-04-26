@@ -1,4 +1,5 @@
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import rehypeCodeTitles from "rehype-code-titles"; // Memastikan import plugin rehypeCodeTitles
 import rehypePrettyCode from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
 import { defineCollection, defineConfig, s } from "velite";
@@ -45,6 +46,14 @@ export default defineConfig({
           properties: {
             className: ["subheading-anchor"],
             ariaLabel: "Link to section",
+          },
+        },
+      ],
+      [
+        rehypeCodeTitles,
+        {
+          properties: {
+            className: ["rehype-code-title"],
           },
         },
       ],
