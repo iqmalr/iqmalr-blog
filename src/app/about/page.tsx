@@ -77,17 +77,18 @@ export default async function AboutPage() {
           </p>
         </div>
         <p className="text-md text-wrap py-4 text-muted-foreground">
-          Greetings! I'm Muhamad Iqmal Riffai, a Front End Developer who
+          Greetings! I&apos;m Muhamad Iqmal Riffai, a Front End Developer who
           believes in the power of technology to create extraordinary user
           experiences. With expertise in web application development using
           platforms like Next.js, React, and Laravel, along with proficiency in
-          backend development through Strapi, I am committed to delivering
-          innovative and efficient solutions. As a graduate in Computer Science
-          from the Universitas Teknologi Yogyakarta, I've embarked on various
-          projects that blend technical skills with creative vision. Here on my
-          blog website, I share documentation from my projects and write
-          informative articles about technology, my experiences in the software
-          development world, and the best practices I've learned along the way.
+          backend development through Strapi or Supabase, I am committed to
+          delivering innovative and efficient solutions. As a graduate in
+          Computer Science from the Universitas Teknologi Yogyakarta, I&apos;ve
+          embarked on various projects that blend technical skills with creative
+          vision. Here on my blog website, I share documentation from my
+          projects and write informative articles about technology, my
+          experiences in the software development world, and the best practices
+          I&apos;ve learned along the way.
         </p>
       </div>
       <hr className="my-8" />
